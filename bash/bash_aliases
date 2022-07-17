@@ -1,0 +1,18 @@
+alias f="run_nvim_fzf" 
+alias hf="search_home"
+
+run_nvim_fzf() {
+    F_PATH=`fzf`;
+    cd ${F_PATH%/*};
+    nvim ${F_PATH##*/};
+  }
+
+search_home() {
+    cd ~;
+    S_PATH=`fzf`;
+    cd ${S_PATH%/*};
+    ls ${S_PATH##*/};
+  }
+
+alias y="win32yank.exe -i --crlf"
+alias p="win32yank.exe -o --lf"
