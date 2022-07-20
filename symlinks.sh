@@ -6,3 +6,7 @@ ln -sTf $PWD/bash/bashrc $HOME/.bashrc
 
 # tmux
 ln -sTf $PWD/tmux/tmux.conf $HOME/.tmux.conf
+
+# nvim
+
+ln -sTf $PWD/nvim $HOME/.config/nvim
