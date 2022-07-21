@@ -63,6 +63,12 @@ require('packer').startup(function()
   -- Packer itself
   use 'wbthomason/packer.nvim'
 
+  --Telescope
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+  -- or                            , branch = '0.1.x',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
 
   -- Themes
   use 'morhetz/gruvbox'
@@ -82,3 +88,14 @@ vim.g.tokyonight_style = 'night'
 
 vim.cmd([[ colorscheme gruvbox ]])
 
+
+-- Telescope
+require('telescope').setup{
+  defaults = {
+    initial_mode = 'insert'
+  }
+}
+vim.cmd([[ nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr> ]])
+vim.cmd([[ nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr> ]])
+vim.cmd([[ nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr> ]]) 
+vim.cmd([[ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr> ]])
