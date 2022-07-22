@@ -4,9 +4,6 @@
 
 vim.g.mapleader = ' '
 
--- Kill cursor switch for shitty Windows Terminal
--- vim.opt.guicursor = ''
-
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -36,6 +33,10 @@ vim.opt.updatetime = 50
 
 vim.opt.scrolloff = 8
 
+-- Kill cursor switch for shitty Windows Terminal
+-- vim.opt.guicursor = ''
+
+
 -- WSLg clipboard settings
 vim.cmd([[ 
 set clipboard=unnamedplus
@@ -64,12 +65,8 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   --Telescope
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
-  -- or                            , branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
-
+  use 'nvim-lua/plenary.nvim'
+  use 'nvim-telescope/telescope.nvim'
   -- Themes
   use 'morhetz/gruvbox'
   use 'folke/tokyonight.nvim'
@@ -89,13 +86,32 @@ vim.g.tokyonight_style = 'night'
 vim.cmd([[ colorscheme gruvbox ]])
 
 
+vim.wo.cursorline = true
+vim.cmd( [[ hi CursorLine ctermbg=black guibg=black ]] )
+vim.cmd( [[ hi CursorLineNr ctermbg=black guibg=black ]] )
+
+vim.wo.cursorcolumn = false
+vim.cmd( [[ hi CursorColumn ctermbg=black guibg=black ]] )
+
+vim.cmd( [[ set colorcolumn=120]])
+-- vim.cmd( [[ hi ColorColumn ctermbg=black guibg=black ]])
+
+
 -- Telescope
+local actions = require("telescope.actions")
 require('telescope').setup{
   defaults = {
-    initial_mode = 'insert'
+    initial_mode = 'insert',
+    border = true,
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close
+      },
+    },
   }
 }
-vim.cmd([[ nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr> ]])
-vim.cmd([[ nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr> ]])
-vim.cmd([[ nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr> ]]) 
-vim.cmd([[ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr> ]])
+vim.cmd([[ nnoremap <leader>fj i<cmd>Telescope find_files<CR>]])
+vim.cmd([[ nnoremap <leader>fk i<cmd>lua require('telescope.builtin').live_grep()<cr>]])
+vim.cmd([[ nnoremap <leader>fp i<cmd>lua require('telescope.builtin').buffers()<cr>]]) 
+vim.cmd([[ nnoremap <leader>fh i<cmd>lua require('telescope.builtin').help_tags()<cr>]])
+vim.cmd([[ nnoremap <leader>fm <cmd>lua require('telescope.builtin').grep_string()<cr>]])
