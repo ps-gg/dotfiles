@@ -67,6 +67,11 @@ require('packer').startup(function()
   --Telescope
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
+  --CHADtree
+  use{
+    "ms-jpq/chadtree", branch = 'chad', run = "python4 -m chadtree deps"
+  }
+
   -- Themes
   use 'morhetz/gruvbox'
   use 'folke/tokyonight.nvim'
@@ -96,6 +101,10 @@ vim.cmd( [[ hi CursorColumn ctermbg=black guibg=black ]] )
 vim.cmd( [[ set colorcolumn=120]])
 -- vim.cmd( [[ hi ColorColumn ctermbg=black guibg=black ]])
 
+--
+-- Keybinds
+--
+
 
 -- Telescope
 local actions = require("telescope.actions")
@@ -115,3 +124,16 @@ vim.cmd([[ nnoremap <leader>fk i<cmd>lua require('telescope.builtin').live_grep(
 vim.cmd([[ nnoremap <leader>fp i<cmd>lua require('telescope.builtin').buffers()<cr>]]) 
 vim.cmd([[ nnoremap <leader>fh i<cmd>lua require('telescope.builtin').help_tags()<cr>]])
 vim.cmd([[ nnoremap <leader>fm <cmd>lua require('telescope.builtin').grep_string()<cr>]])
+
+
+-- CHADtree
+local chadtree_settings = {
+  ["view.window_options.cursorline"] = true,
+  ["view.window_options.number"] = true,
+  ["view.window_options.relativenumber"] = true,
+  ["view.open_direction"] = "right"
+}
+vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
+
+vim.cmd([[ nnoremap <leader>e <cmd>CHADopen<cr> ]])
+vim.cmd([[ nnoremap <leader>E <cmd>CHADopen --version-ctl<cr> ]])
