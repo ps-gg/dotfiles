@@ -4,6 +4,8 @@
 
 vim.g.mapleader = ' '
 
+vim.cmd([[ :set mouse=a ]])
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -120,10 +122,10 @@ vim.cmd([[ nnoremap <C-k> :m .-2<CR>== ]])
 vim.cmd([[ nnoremap <silent> <C-l> :bnext<CR> ]])
 vim.cmd([[ nnoremap <silent> <C-h> :bprevious<CR> ]])
 -- buffer/panes movements
---vim.cmd([[ nnoremap <M-h> <C-W>h ]])
---vim.cmd([[ nnoremap <M-j> <C-W>j ]])
---vim.cmd([[ nnoremap <M-k> <C-W>k ]])
---vim.cmd([[ nnoremap <M-l> <C-W>l ]])
+vim.cmd([[ nnoremap <M-h> <C-W>h ]])
+vim.cmd([[ nnoremap <M-j> <C-W>j ]])
+vim.cmd([[ nnoremap <M-k> <C-W>k ]])
+vim.cmd([[ nnoremap <M-l> <C-W>l ]])
 
 -- Don't loose selection while indenting
 vim.cmd([[ vnoremap < <gv ]])
