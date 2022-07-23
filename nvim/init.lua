@@ -63,15 +63,18 @@ let g:clipboard = {
 require('packer').startup(function()
   -- Packer itself
   use 'wbthomason/packer.nvim'
-
-  --Telescope
+  -- Telescope
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
-  --CHADtree
+  -- CHADtree
   use{
-    "ms-jpq/chadtree", branch = 'chad', run = "python4 -m chadtree deps"
+    'ms-jpq/chadtree', branch = 'chad', run = 'python4 -m chadtree deps'
   }
-
+  -- Edit
+  use 'tpope/vim-surround'
+  use 'tpope/vim-repeat'
+  use 'numToStr/Comment.nvim'
+  use 'windwp/nvim-autopairs'
   -- Themes
   use 'morhetz/gruvbox'
   use 'folke/tokyonight.nvim'
@@ -90,7 +93,7 @@ vim.g.tokyonight_style = 'night'
 
 vim.cmd([[ colorscheme gruvbox ]])
 
-
+-- Lines
 vim.wo.cursorline = true
 vim.cmd( [[ hi CursorLine ctermbg=black guibg=black ]] )
 vim.cmd( [[ hi CursorLineNr ctermbg=black guibg=black ]] )
@@ -161,3 +164,12 @@ vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
 
 vim.cmd([[ nnoremap <leader>e <cmd>CHADopen<cr> ]])
 vim.cmd([[ nnoremap <leader>E <cmd>CHADopen --version-ctl<cr> ]])
+
+
+-- Comment.vim
+require('Comment').setup()
+
+
+-- nvim-autopairs
+require('nvim-autopairs').setup()
+
