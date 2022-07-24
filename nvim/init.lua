@@ -72,6 +72,11 @@ require('packer').startup(function()
   use{
     'ms-jpq/chadtree', branch = 'chad', run = 'python4 -m chadtree deps'
   }
+  --Statusline ( Lualine )
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
   -- Edit
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
@@ -93,7 +98,9 @@ vim.g.gruvbox_invert_selection = '0'
 
 vim.g.tokyonight_style = 'night'
 
-vim.cmd([[ colorscheme gruvbox ]])
+local current_colorscheme = 'tokyonight'  -- tokyonight / gruvbox
+
+vim.cmd('colorscheme '.. current_colorscheme)
 
 -- Lines
 vim.wo.cursorline = true
@@ -175,3 +182,10 @@ require('Comment').setup()
 -- nvim-autopairs
 require('nvim-autopairs').setup()
 
+
+-- Lualine
+require('lualine').setup {
+  options = {
+    theme = current_colorscheme
+  }
+}
